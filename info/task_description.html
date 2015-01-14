@@ -1,44 +1,61 @@
-<p xmlns="http://www.w3.org/1999/html">
-    <i>( Describe task in general )</i>
+<p>
+    A routing loop is a common problem with various types of networks, particularly computer networks.
+    Loops are the same as cycles in graphs. Let's learn how to find these cycles in a network.
 </p>
 
 <p>
-    Sum two passed ints
+    A cycle consists of a sequence of nodes starting and ending at the same node without repetitions of nodes,
+    with each two consecutive nodes in the sequence connect to each other in the network.
+    Cycle length is a quantity of nodes in it. The length of cycle should be great than 2.
+    You should find the biggest cycle in a network, if we have several equal by size loops, then choose any of them.
+</p>
+
+<p>
+    The nodes in the network are numbered and each connections are undirected. The length of edges are not substantial,
+    so consider them as equal lengths. Some components of a network can be disconnected.
+</p>
+<p>
+    The network is represented as a sequence of connections.
+    Each connection is described by two two numbers -- which nodes are connected.
+    The result should be represented as a sequence of numbers which start and end with the same number.
+    If there is no cycles, then return an empty sequence.
 </p>
 
 <p style="text-align: center;">
-    <img class="for_info_only" title="example" src="{{MEDIA}}example.svg" alt="example" width="392px"/>
+    <img class="for_info_only" title="example" src="{{MEDIA}}example.svg" alt="example"/>
     <img class="for_editor_only" title="example" src="{{MEDIA}}example.svg" alt="example" width="380px"/>
 </p>
 
-<p><i>( Explain input and output values )</i></p>
 <p>
-    <strong>Input: </strong> Two arguments. Both are int
+    For example this image will be described as: ((1,2),(2,3),(3,4),(4,5),(5,7),(7,6),(8,5),(8,4),(1,5),(2,4)).
+    And the biggest loop have 6 nodes. It can be described as [1,2,3,4,5,8,1] (or [3,4,5,8,1,2,3]).
 </p>
 
 <p>
-    <strong>Output: </strong> Int. 
+    <strong>Input: </strong> Connection information as a tuple of tuples of integers.
+</p>
+
+<p>
+    <strong>Output: </strong> The biggest cycle (or one of them) as a list/tuple of integers.
 </p>
 
 
 
 <div class="for_info_only">
-    <p><i>( Put some usage examples )</i></p>
     <p>
         <strong>Example:</strong>
     </p>
-    <textarea data-code="python">
-checkio(3, 2) == 5
-checkio(5, 7) == 12
-    </textarea>
+<textarea data-code="python">find_cycle(((1, 2), (2, 3), (3, 4), (4, 5), (5, 7),
+           (7, 6), (8, 5), (8, 4), (1, 5), (2, 4))) # [1, 2, 3, 4, 5, 8, 1]</textarea>
 </div>
 
 <p class="for_info_only">
     <strong>How it is used: </strong>
-    <i>(Here you can explain how it can be used in development and what is usage of this.)</i>
+    Cycle detection is important for computer networks as we already said.
+    And it can be used to detect deadlocks in concurrent programming.
 </p>
 
 <p>
-    <strong>Precondition:</strong>
-    <i>Constraints for Input</i>
+    <strong>Precondition:</strong><br>
+    all([(n2, n1) in connections for n1, n2 in connections)<br>
 </p>
