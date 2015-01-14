@@ -34,6 +34,28 @@ from checkio.referees import checkers
 
 from tests import TESTS
 
+cover = """def cover(f, data):
+    return f(tuple(tuple(d) for f in data))"""
+
+
+def checker(user_result, data):
+    connections, n, best_size = data
+    if not isinstance(user_result, (tuple, list)) or not all(isinstance(n, int) for n in user_result):
+        return False, "You should return a list/tuple of integers."
+    if not best_size and user_result:
+        return False, "Where did you find a cycle here?"
+    if len(user_result) < best_size + 1:
+        return False, "You can find a better loop."
+    if user_result[0] != user_result[-1]:
+        return False, "A cycle starts and ends in the same node."
+    if len(set(user_result)) != len(user_result) - 1:
+        return False, "Repeat! Yellow card!"
+    for n1, n2 in zip(user_result[:-1], user_result[1:]):
+        if [n1, n2] not in connections and [n2, n1] not in connections:
+            return False, "{}-{} is not exist".format(n1, n2)
+    return True
+
+
 api.add_listener(
     ON_CONNECT,
     CheckiOReferee(
@@ -42,7 +64,8 @@ api.add_listener(
             'python-27': cover_codes.unwrap_args,  # or None
             'python-3': cover_codes.unwrap_args
         },
-        # checker=None,  # checkers.float.comparison(2)
+        checker=checker,
+        function_name="find_cycle"
         # add_allowed_modules=[],
         # add_close_builtins=[],
         # remove_allowed_modules=[]
