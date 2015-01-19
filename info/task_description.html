@@ -1,24 +1,23 @@
 <p>
-    A routing loop is a common problem with various types of networks, particularly computer networks.
-    Loops are the same as cycles in graphs. Let's learn how to find these cycles in a network.
+    A routing loop is a common problem with computer networks. Loops are virtually the same as cycles in graphs. For
+    this mission, we’ll learn how to find these cycles in a network.
 </p>
 
 <p>
-    A cycle consists of a sequence of nodes starting and ending at the same node without repetitions of nodes,
-    with each two consecutive nodes in the sequence connect to each other in the network.
-    Cycle length is a quantity of nodes in it. The length of cycle should be great than 2.
-    You should find the biggest cycle in a network, if we have several equal by size loops, then choose any of them.
+    A cycle consists of a sequence of nodes starting and ending on the same node without repetition and with each
+    consecutive node in the sequence connecting to each other in the network. The cycle length is the quantity of nodes
+    within the cycle. The length of cycle will always be greater than 2. You should find the largest cycle in a given
+    network, determine if we have multiple equal sized loops, then choose any one of them.
 </p>
 
 <p>
-    The nodes in the network are numbered and each connections are undirected. The length of edges are not substantial,
-    so consider them as equal lengths. Some components of a network can be disconnected.
+    The nodes in the network are numbered and each connection is undirected. The length of the edges are not
+    substantial, so consider them to be of equal length. Some components of a network can be disconnected.
 </p>
 <p>
-    The network is represented as a sequence of connections.
-    Each connection is described by two two numbers -- which nodes are connected.
-    The result should be represented as a sequence of numbers which start and end with the same number.
-    If there is no cycles, then return an empty sequence.
+    The network is represented as a sequence of connections. Each connection is described by the two two numbers
+    representing the connected nodes. The result should be given as a sequence of numbers which start and end with the
+    same number. If there is no cycle, then return an empty sequence.
 </p>
 
 <p style="text-align: center;">
@@ -36,9 +35,8 @@
 </p>
 
 <p>
-    <strong>Output: </strong> The biggest cycle (or one of them) as a list/tuple of integers.
+    <strong>Output: </strong> The largest cycle, or any one of the largest cycles as a list/tuple of integers.
 </p>
-
 
 
 <div class="for_info_only">
@@ -51,8 +49,8 @@
 
 <p class="for_info_only">
     <strong>How it is used: </strong>
-    Cycle detection is important for computer networks as we already said.
-    And it can be used to detect deadlocks in concurrent programming.
+    Cycle detection is important for computer networking and may even be applied in the detection of deadlocks in
+    concurrent programming.
 </p>
 
 <p>

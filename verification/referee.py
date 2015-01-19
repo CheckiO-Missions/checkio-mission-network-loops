@@ -38,12 +38,14 @@ cover = """def cover(f, data):
     return f(tuple(tuple(d) for f in data))"""
 
 
-def checker(user_result, data):
-    connections, n, best_size = data
+def checker(data, user_result):
+    connections, best_size = data
     if not isinstance(user_result, (tuple, list)) or not all(isinstance(n, int) for n in user_result):
         return False, "You should return a list/tuple of integers."
     if not best_size and user_result:
         return False, "Where did you find a cycle here?"
+    if not best_size and not user_result:
+        return True, "Ok"
     if len(user_result) < best_size + 1:
         return False, "You can find a better loop."
     if user_result[0] != user_result[-1]:
@@ -53,7 +55,7 @@ def checker(user_result, data):
     for n1, n2 in zip(user_result[:-1], user_result[1:]):
         if [n1, n2] not in connections and [n2, n1] not in connections:
             return False, "{}-{} is not exist".format(n1, n2)
-    return True
+    return True, "Ok"
 
 
 api.add_listener(
@@ -61,8 +63,8 @@ api.add_listener(
     CheckiOReferee(
         tests=TESTS,
         cover_code={
-            'python-27': cover_codes.unwrap_args,  # or None
-            'python-3': cover_codes.unwrap_args
+            'python-27': None,
+            'python-3': None
         },
         checker=checker,
         function_name="find_cycle"
