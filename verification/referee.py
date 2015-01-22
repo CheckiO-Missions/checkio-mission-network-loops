@@ -35,7 +35,7 @@ from checkio.referees import checkers
 from tests import TESTS
 
 cover = """def cover(f, data):
-    return f(tuple(tuple(d) for f in data))"""
+    return f(tuple(tuple(d) for d in data))"""
 
 
 def checker(data, user_result):
@@ -63,8 +63,8 @@ api.add_listener(
     CheckiOReferee(
         tests=TESTS,
         cover_code={
-            'python-27': None,
-            'python-3': None
+            'python-27': cover,
+            'python-3': cover
         },
         checker=checker,
         function_name="find_cycle"
