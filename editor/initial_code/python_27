@@ -23,9 +23,9 @@ if __name__ == '__main__':
             print("Repeat! Yellow card!")
             return False
         for n1, n2 in zip(user_result[:-1], user_result[1:]):
-            if [n1, n2] not in connections and [n2, n1] not in connections:
+            if (n1, n2) not in connections and (n2, n1) not in connections:
                 print("{}-{} is not exist".format(n1, n2))
-            return False
+                return False
         return True, "Ok"
     
     assert checker(find_cycle, 
